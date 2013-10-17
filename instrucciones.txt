@@ -1,0 +1,31 @@
+NOTAS PARA COLABORADORES
+Todo el código funcional se depositará en el directorio src, el resto no se incluirá en la versión final (recursos, archivos temporales, etc.).
+
+ESTRUCTURA
+La estructura de este repositorio es:
+-recursos: Todo lo relacionado con el proyecto y que no se vaya a utilizar en la versión final (definición de base de datos, documentos ODT, etc.).
+-tmp: Todo lo que utilicemos y sea irrelevante, como por ejemplo pruebas que hagamos en un momento dado, se guardará en esta carpeta. Si la carpeta no existe siempre puede  crearse.
+-src: El código propiamente dicho del programa así como todo lo relacionado (CSS, imágenes y demás). Esto será lo que se copie en el servidor de verdad.
+
+.GITIGNORE
+El repositorio cuenta con un fichero llamado .gitignore, que lo que hace es como su nombre indica ignorar determinados directorios o archivos. Esto significa que estos archivos no se subirán cuando exportemos nuestros cambios, son totalmente locales a nuestro equipo. Actualmente sólo tmp está en esta lista, por eso al importar por primera vez el repositorio no aparecerá.
+
+USO DE GIT
+Para utilizar git en linux, es tan sencillo como situarse en el directorio raíz del repositorio desde la terminal y ejecutar las instrucciones ahí.
+Desde linux, debemos ir a la carpeta raíz, pulsar con el botón derecho y luego en "Git Bash". Se abrirá una terminal similar a Linux desde la que podremos trabajar.
+Las instrucciones básicas para utilizar git son las siguientes:
+- git status: Muestra los ficheros con cambios que se han añadido al commit actual, los no añadidos, y los eliminados.
+- git add: Permite añadir cambios que hayamos realizado al commit actual.
+- git rm: Como git add pero para archivos que eliminemos.
+- git commit: Permite crear el commit actual con todos los cambios que hayamos realizado localmente desde el último commit. Con el parámetro -m se debe indicar la descripción. Crearemos el commit cuando hayamos terminado la tarea que estemos haciendo.
+- git pull: Importa todos los commits (y por lo tanto los cambios) que no tengamos del servidor. Es altamente recomendado usarlo antes de git push para evitar conflictos.
+- git push: Exporta todos los commits locales al servidor.
+
+Ejemplo:
+Modificamos el archivo src/gnomo.php añadiendo un par de líneas de código, y no vamos a cambiar nada más. Debemos usar "git add src/gnomo.php", "git commit -m 'modificando gnomo'", "git pull" y "git push".
+
+CONFLICTOS
+Si dos usuarios modifican el mismo fichero, puede generarse un conflicto. En este caso, el último usuario en hacer git pull será el que tendrá que revisar el fichero y arreglar los conflictos (en las partes conflictivas del fichero aparecen dos versiones separadas por símbolos). Una vez realizado, habrá que usar git add, git commit y git push para subir los cambios que arreglan el conflicto.
+
+VER GRÁFICAMENTE LA EVOLUCIÓN
+Escribid gitk en la terminal de git. Y ya está!
