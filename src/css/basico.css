@@ -1,0 +1,82 @@
+body{
+width:1330px;
+font-family: Georgia,"Times New Roman",Times,serif;
+font-size:11px;
+text-align:center;
+margin:0 auto;
+margin-bottom:10px;
+}
+a{
+text-decoration:none;
+color:black;
+}
+
+#header-wrapper{
+min-height:100px;
+max-height:100px;
+margin-bottom:1px;
+background-color:white;
+}
+#main-wrapper{
+border-radius:1%;
+padding-top:50px;
+min-height:500px;
+max-height:500px;
+background-color:rgb(40,170,40);
+margin-bottom:1px;
+}
+#footer-wrapper{
+min-height:100px;
+max-height:100px;
+background-color:rgb(200,20,20);
+}
+#menulogin{
+height:100px;
+width:300px;
+margin-top:10px;
+display:none;
+background-color:rgb(40,170,40);
+}
+#botonlogin{
+	float:left;
+	width:100px;
+	margin-top:1px;
+	margin-bottom:10px;
+	font-size:10px;
+	height:13px;
+	padding:0px;
+}
+#erroreslogin{
+width:210px;
+margin-left:50px;
+color:white;
+display:none;
+}
+
+.menu-header{
+font-size:15px;
+width:120px;
+height:25px;
+padding-top:5px;
+background-color:rgb(40,170,40);
+text-align:center;
+}
+.menu-header:hover{
+background-color:rgb(100,255,100);
+}
+.login{
+background-color:red;
+width:100px;
+}
+.header-left{
+float:left;
+margin-top:30px;
+margin-left:10px;
+}
+.titulo{
+font-size:40px;
+}
+.header-right{
+float:right;
+margin-top:50px;
+}

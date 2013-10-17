@@ -1,0 +1,137 @@
+#habilidades{
+    float:right;
+    text-align:left;
+}
+#cajaHabilidades{
+    min-width:300px;
+    max-width:300px;
+    min-height:328px;
+    padding-right:10px;
+    float:right;
+    height:auto;
+    margin-right:90px;
+    font-size:14px;
+    background-color:white;
+    border-radius:1%;
+    text-align:center;
+}
+#cajaHabilidades *{
+    text-align:left;
+    margin-bottom:20px;
+    margin-top:20px;
+}
+#puntos{
+    font-size:20px;
+    text-align:center;
+}
+#cajaImagen{
+    text-align:center;
+    min-width:300px;
+    max-width:300px;
+    min-height:328px;
+    background-size:200px;
+    background-color:white;
+    margin:0 auto;
+    border-radius:1%;
+}
+#imagen{
+    margin:0 auto;
+    text-align:left;
+}
+#imagenGnomo{
+    width:300px;
+    height:280px;
+    background-size:250px;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#habilidades .tituloRegistro{
+    margin-top:37px;
+    padding-left:10px;
+    font-weight: bold;
+}
+#imagen .tituloRegistro{
+    margin:0 auto;
+    width: 300px;
+    margin-top:-14px;
+    padding-left: 10px;
+    font-weight:bold;
+}
+#informacion .tituloRegistro{
+    text-align:left;
+    width: 300px;
+    margin-top: 37px;
+    margin-left:88px;
+    padding-left: 10px;
+    font-weight:bold;
+}
+#titulo{
+    width:400px;
+}
+#cajaInformacion{
+    min-width:300px;
+    max-width:300px;
+    min-height:328px;
+    padding-right:10px;
+    float:left;
+    height:auto;
+    margin-left:90px;
+    font-size:14px;
+    background-color:white;
+    border-radius:1%;
+    text-align:center;
+}
+#botonesSeleccion{
+    background-color:black;
+    width:100px;
+    margin:0 auto;
+}
+#izquierda{
+    margin-right:10px;
+    float:left;
+    width:40px;
+    height:40px;
+    background-image:url("../images/button-left.png");
+    background-size:40px;
+}
+#derecha{
+    margin-left:10px;
+    float:left;
+    width:40px;
+    height:40px;
+    background-image:url("../images/button-right.png");
+    background-size:40px;
+}
+#cajaInformacion input,select{
+    width:140px;
+    margin-top:5px;
+}
+#cajaInformacion .izquierda{
+    margin-top:20px;
+}
+#cajaInformacion textarea{
+    min-width:140px;
+    max-width:140px;
+    max-height:200px;
+    min-height:200px;
+    margin-top:5px;
+}
+#validar{
+    width:100px;
+    height:20px;
+    margin:0 auto;
+    margin-top:20px;
+    background-color:rgb(100,255,100);
+    font-size:15px;
+    font-weight:bold;
+}
+#validar:hover{
+    background-color:white;
+}
+#cajaHabilidades .derecha input{
+    margin-top:-20px;
+    width:15px;
+}
+#cajaHabilidades .derecha{
+    height:17px;
+}
