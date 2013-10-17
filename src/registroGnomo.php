@@ -4,7 +4,7 @@
         {
 		header("location:index.php");
         }
-        $num_imagenes=2; //Sustituir el numero de imagenes por una comprobación en la base de datos!
+        $num_imagenes=2; //Sustituir el numero de imagenes por una comprobación en la base de datos (COUNT DE LA FUTURA TABLA "IMAGENES_GNOMOS")!
 ?>
 <html>
 	<head>
@@ -21,11 +21,60 @@
                 <script>
                     function validar()
                     {
-                        var sexo = document.getElementById("sexo").value;
-                        //Dividirlo en imagen y sexo
                         var nombre = document.getElementById("nombre").value;
-                        var descripcion = document.getElementById("descripcion").value;
+                        var sexo = document.getElementById("sexo").value;
+                        var imagen = document.getElementById("imagenGnomo").src;
+                        imagen = imagen.substring((imagen.length)-((sexo.length)+5),imagen.length);
+                        var agricultor = document.getElementById("agricultor").value;
+                        var minero = document.getElementById("minero").value;
+                        var lenhador = document.getElementById("lenhador").value;
+                        var investigador = document.getElementById("investigador").value;
+                        var militar = document.getElementById("militar").value;
+                        var construccion = document.getElementById("construccion").value;
+                        var puntos = document.getElementById("puntosRestantes").value;
                         
+                        $("#error").html("");
+                        if(puntos > 0)
+                        {
+                            $("#error").append("*Todavía no ha usado el total de sus puntos");
+                        }
+                        var xmlhttp;
+                        xmlhttp=new XMLHttpRequest();
+                        xmlhttp.onreadystatechange=function()
+                        {
+                                if(xmlhttp.readyState == 4)
+                                {
+                                        //COMPROBAR SI EL RESULTADO ES "CORRECTO" Y SI LO ES MANDAR AL USUARIO A PRINCIPAL (FIN DE REGISTRO DE GNOMO)
+                                        $("#error").append(xmlhttp.responseText);
+                                }
+                        };
+                        xmlhttp.open("POST","guardarGnomo.php",true);
+                        xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                        xmlhttp.send("&nombre="+nombre+"&sexo="+sexo+"&lenhador="+lenhador);
+                    }
+                    function restar(input)
+                    {
+                        var puntos = document.getElementById("puntosRestantes");
+                        var puntosOcultos = document.getElementById("puntosOcultos");
+                        
+                        if(input.value > 1)
+                        {
+                            input.value = parseFloat(input.value) - 1;
+                            puntos.value = parseFloat(puntos.value) + 1;
+                            puntosOcultos.value = parseFloat(puntosOcultos.value) + 1;
+                        }
+                    }
+                    function sumar(input)
+                    {
+                        var puntos = document.getElementById("puntosRestantes");
+                        var puntosOcultos = document.getElementById("puntosOcultos");
+                        
+                        if(puntosOcultos.value > 0)
+                        {
+                            input.value = parseFloat(input.value) + 1;
+                            puntos.value = parseFloat(puntos.value) - 1;
+                            puntosOcultos.value = parseFloat(puntosOcultos.value) - 1;
+                        }
                     }
                     function cambiarSexo()
                     {
@@ -38,10 +87,6 @@
                             sexo = "mujer"
                         
                         imagen.src = "images/gnomos/"+sexo+"1.png";
-                        
-                        //Dividir la variable en sexo y numero, poner el nombre al contrario y el número a 1, luego
-                        //asignarle el css a la imagen.
-                        
                     }
                     function derecha()
                     {
@@ -55,10 +100,6 @@
 
                             document.getElementById("imagenGnomo").src = direccion+numero+".png";
                         }
-                        
-                        //Dividir la variable sexo en numero y sexo para cambiar correctamente el css con el número sumado en uno,
-                        //antes de asignar el css comprobar que existe la imagen, si no existe, no cambiar la imagen.
-                        
                     }
                     function izquierda()
                     {
@@ -102,8 +143,9 @@
                                                     </div>
                                                     <div id="cajaHabilidades">
                                                         <div class="formulario-texto">
+                                                            
                                                             <div class="izquierda">
-                                                                    Habilidad de lenhador:
+                                                                Habilidad de leñador:
                                                             </div>
                                                             <div class="izquierda">
                                                                     Habilidad de minero:
@@ -121,29 +163,55 @@
                                                                     Habilidad de construcción:
                                                             </div>
                                                         </div>
+                                                        <!-- ¿¿AGREGAR UNAS PEQUEÑAS IMAGENES CON EL SPAN EXPLICATIVO DE CADA HABILIDAD?? -->
                                                         <div class="formulario-inputs">
                                                             <div class="derecha">
-                                                                <a href="#">-</a> <input type="text" value="1" disabled=""/> <a href="#">+</a>
+                                                                <span title="La habilidad de leñador realza la eficacia y la rapidez con la que tu gnomo podrá recoger madera en el bosque">
+                                                                    <a href="#" onClick="restar(document.getElementById('lenhador'))">-</a>
+                                                                    <input type="text" value="1" disabled="" id="lenhador" /> 
+                                                                    <a href="#" onClick="sumar(document.getElementById('lenhador'))">+</a>
+                                                                </span>
                                                             </div>
                                                             <div class="derecha">
-                                                                <a href="#">-</a> <input type="text" value="1" disabled=""/> <a href="#">+</a>
+                                                                <span title="Tu habilidad de minero determinará la eficacia a la hora de recoger minerales o piedras de alguna excavación">
+                                                                    <a href="#" onClick="restar(document.getElementById('minero'))">-</a>
+                                                                    <input type="text" value="1" disabled="" id="minero"/>
+                                                                    <a href="#" onClick="sumar(document.getElementById('minero'))">+</a>
+                                                                </span>
                                                             </div>
                                                             <div class="derecha">
-                                                                <a href="#">-</a> <input type="text" value="1" disabled=""/> <a href="#">+</a>
+                                                                <span title="La habilidad de agricultor proporciona una mayor destreza a la hora de realizar tareas en el huerto de seta">
+                                                                    <a href="#" onClick="restar(document.getElementById('agricultor'))">-</a>
+                                                                    <input type="text" value="1" disabled="" id="agricultor"/>
+                                                                    <a href="#" onClick="sumar(document.getElementById('agricultor'))">+</a>
+                                                                </span>
                                                             </div>
                                                             <div class="derecha">
-                                                                <a href="#">-</a> <input type="text" value="1" disabled=""/> <a href="#">+</a>
+                                                                <span title="Un buen investigador podrá realizar descubrimientos en menos tiempo y con una mayor eficacia de lo habitual">
+                                                                    <a href="#" onClick="restar(document.getElementById('investigador'))">-</a>
+                                                                    <input type="text" value="1" disabled="" id="investigador"/>
+                                                                    <a href="#" onClick="sumar(document.getElementById('investigador'))">+</a>
+                                                                </span>
                                                             </div>
                                                             <div class="derecha">
-                                                                <a href="#">-</a> <input type="text" value="1" disabled=""/> <a href="#">+</a>
+                                                                <span title="Aquellos gnomos con una superior habilidad militar podrán vencer todo lo que se les oponga">
+                                                                    <a href="#" onClick="restar(document.getElementById('militar'))">-</a>
+                                                                    <input type="text" value="1" disabled="" id="militar"/>
+                                                                    <a href="#" onClick="sumar(document.getElementById('militar'))">+</a>
+                                                                </span>
                                                             </div>
                                                             <div class="derecha">
-                                                                <a href="#">-</a> <input type="text" value="1" disabled=""/> <a href="#">+</a>
+                                                                <span title="La habilidad de construcción determina la rapidez y eficiencia de un gnomo a la hora de realizar una tarea de construcción de un edificio">
+                                                                    <a href="#" onClick="restar(document.getElementById('construccion'))">-</a>
+                                                                    <input type="text" value="1" disabled="" id="construccion"/>
+                                                                    <a href="#" onClick="sumar(document.getElementById('construccion'))">+</a>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                         <div id="puntos">
-                                                            Puntos restantes: 5
+                                                            Puntos restantes: <input name="puntosRestantes" id="puntosRestantes" value="5" disabled=""/>
                                                         </div>
+                                                        <input type="hidden" value="5" id="puntosOcultos" />
                                                     </div>
                                                 </div>
                                                 <div id="informacion">
@@ -205,7 +273,9 @@
                                                     </div>
                                                 </a>
                                             </div>
-                                            
+                                            <div id="error">
+                                                
+                                            </div>
 					</div>
 				</div>
 				<div id="footer-wrapper">

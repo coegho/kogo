@@ -4,8 +4,9 @@
 }
 #cajaHabilidades{
     min-width:300px;
-    max-width:300px;
+    max-width:310px;
     min-height:328px;
+    max-height:328px;
     padding-right:10px;
     float:right;
     height:auto;
@@ -23,6 +24,13 @@
 #puntos{
     font-size:20px;
     text-align:center;
+    width:200px;
+    height:40px;
+    clear:both;
+    float:left;
+    margin:0 auto;
+    margin-top:-20px;
+    margin-left:60px;
 }
 #cajaImagen{
     text-align:center;
@@ -134,4 +142,12 @@
 }
 #cajaHabilidades .derecha{
     height:17px;
+}
+#puntosRestantes{
+    width:20px;
+    margin-bottom:20px;
+
+}
+#error{
+    color:red;
 }

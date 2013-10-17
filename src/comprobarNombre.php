@@ -20,12 +20,12 @@
 			}
 			else
 			{
-				$consulta = "INSERT INTO usuario (mail,nick,pass) VALUES ('". mysql_real_escape_string($_POST["email"]) ."','" . mysql_real_escape_string($_POST["nombre"]) . "','" . sha1(mysql_real_escape_string($_POST["password"])) . "');";
+                                $consulta = "INSERT INTO usuario (mail,nick,pass) VALUES ('". mysql_real_escape_string($_POST["email"]) ."','" . mysql_real_escape_string($_POST["nombre"]) . "','" . sha1(mysql_real_escape_string($_POST["password"])) . "');";
 				if($resultado = mysql_query($consulta,$conexion) or die(mysql_error()))
 				{
 					session_start();
 					$_SESSION["usuario"] = $_POST["nombre"];
-                                        $consulta = "SELECT cod FROM usuario WHERE nick=". mysql_real_escape_string($_POST["nombre"]) ;
+                                        $consulta = "SELECT cod FROM usuario WHERE nick='". mysql_real_escape_string($_POST["nombre"]) ."'" ;
                                         if($resultado = mysql_query($consulta,$conexion) or die(mysql_error()))
                                         {
                                             $_SESSION["codUsuario"] = $fila["cod"];
